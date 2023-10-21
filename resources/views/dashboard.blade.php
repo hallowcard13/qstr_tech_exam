@@ -28,12 +28,10 @@
                                     <a href="#"
                                         class="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium"
                                         aria-current="page">Dashboard</a>
-                                    <a href="#"
-                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Team</a>
-                                    <a href="#"
-                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Projects</a>
-                                    <a href="#"
-                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Calendar</a>
+                                    <a href="/factories"
+                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Factory</a>
+                                    <a href="/employees"
+                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Employees</a>
                                     <a href="{{route('userlogout')}}"
                                         class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Sign
                                         out</a>

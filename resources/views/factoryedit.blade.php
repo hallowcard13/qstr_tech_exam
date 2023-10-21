@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard</title>
+    <title>Add Factory</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -115,7 +115,7 @@
             </nav>
             <header class="py-10">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h1 class="text-3xl font-bold tracking-tight text-white">Factories</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-white">edit Factory</h1>
                 </div>
             </header>
         </div>
@@ -123,81 +123,71 @@
         <main class="-mt-32">
             <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
                 <div class="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-                    <div class="px-4 sm:px-6 lg:px-8">
-                        <div class="sm:flex sm:items-center">
-                            <div class="sm:flex-auto">
-                                <h1 class="text-base font-semibold leading-6 text-gray-900"></h1>
-                                <p class="mt-2 text-sm text-gray-700">A list of all the factories</p>
-                            </div>
-                            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                                <a href="{{route('factories.create')}}"
-                                    class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Add
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mt-8 flow-root">
-                            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-                                        <table class="min-w-full divide-y divide-gray-300">
-                                            <thead class="bg-gray-50">
-                                                <tr>
-                                                    <th scope="col"
-                                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                        Name</th>
-                                                    <th scope="col"
-                                                        class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                        Location</th>
-                                                    <th scope="col"
-                                                        class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                        Email</th>
-                                                    <th scope="col"
-                                                        class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                        Website</th>
-                                                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                        <span class="sr-only">Edit</span>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="divide-y divide-gray-200 bg-white">
-
-                                                @foreach ($factories as $factory)
-
-
-                                                <tr>
-                                                    <td
-                                                        class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                        {{$factory->factory_name}}</td>
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {{$factory->location}}</td>
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {{$factory->email}}</td>
-                                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                        {{$factory->website}}
-                                                    </td>
-                                                    <td
-                                                        class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                        <a href="factories/{{$factory->id}}/edit"
-                                                            class="text-indigo-600 hover:text-indigo-900">Edit<span
-                                                                class="sr-only">, Lindsay Walton</span></a>
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-
-                                                <!-- More people... -->
-                                            </tbody>
-                                        </table>
-                                        <div class="border-t">
-                                            {{ $factories->links() }}
-                                        </div>
-                                    </div>
+                    <div class="flex">
+                        <form class="w-1/2" action="{{route('factories.update', ['factory' => $factory])}}"
+                            method="POST">
+                            @csrf
+                            <input type="hidden" name="_method" value="PUT">
+                            <div>
+                                <label for="factory_name"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Factory
+                                    Name</label>
+                                <div class="mt-2">
+                                    <input type="text" name="factory_name" id="factory_name"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="factory name" value="{{$factory->factory_name}}">
                                 </div>
                             </div>
+                            <div class="mt-4">
+                                <label for="location"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Location</label>
+                                <div class="mt-2">
+                                    <input type="text" name="location" id="location"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="location" value="{{$factory->location}}">
+                                </div>
+                            </div>
+                            <div class=" mt-4">
+                                <label for="email"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                                <div class="mt-2">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="email address" value="{{$factory->email}}">
+                                </div>
+                            </div>
+                            <div class=" mt-4">
+                                <label for="website" class="block text-sm font-medium leading-6 text-gray-900">Website
+                                </label>
+                                <div class="mt-2">
+                                    <input type="text" name="website" id="website"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="website" value="{{$factory->website}}">
+                                </div>
+                            </div>
+                            <div class=" pt-5">
+                                <button type="submit" class="bg-indigo-700 text-white rounded-md shadow py-2 px-2">Save
+                                    factory</button>
+                            </div>
+                        </form>
+                        <div class="p-10">
+                            @if ($errors->any())
+                            <div class="bg-red-500 p-4 rounded">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li class="text-white">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                            @if (session('status'))
+                            <div class="bg-green-500 text-white rounded p-4">
+                                {{ session('status') }}
+                            </div>
+                            @endif
                         </div>
                     </div>
-
                 </div>
-            </div>
         </main>
     </div>
 </body>

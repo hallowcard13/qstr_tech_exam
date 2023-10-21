@@ -13,7 +13,8 @@ class FactoryController extends Controller
      */
     public function index()
     {
-        return view('factory');
+
+        return view('factory', ['factories' => Factory::paginate(10)]);
     }
 
     /**
@@ -21,7 +22,7 @@ class FactoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('factoryAdd');
     }
 
     /**
@@ -35,6 +36,7 @@ class FactoryController extends Controller
         $factory->email = $request->email;
         $factory->website = $request->website;
         $factory->save();
+        return redirect()->route('factories.create')->with('status', 'Factory  has been added');
     }
 
     /**
@@ -50,7 +52,7 @@ class FactoryController extends Controller
      */
     public function edit(Factory $factory)
     {
-        //
+        return view('factoryedit', ['factory' => $factory]);
     }
 
     /**
@@ -63,6 +65,7 @@ class FactoryController extends Controller
         $factory->email = $request->email;
         $factory->website = $request->website;
         $factory->save();
+        return redirect()->route('factories.edit', ['factory' => $factory->id])->with('status', 'Factory has been updated');
     }
 
     /**
