@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
+use App\Models\Factory;
 
 class EmployeeController extends Controller
 {
@@ -13,7 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        return view('employees', ['employees' => Employee::paginate(10)]);
     }
 
     /**
@@ -21,7 +22,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view("emplyeeAdd", ["factories" => Factory::all()]);
     }
 
     /**
@@ -52,7 +53,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('employeeEdit', ['employee' => $employee, 'factories' => Factory::all()]);
     }
 
     /**
