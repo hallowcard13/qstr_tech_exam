@@ -29,7 +29,12 @@ class FactoryController extends Controller
      */
     public function store(StoreFactoryRequest $request)
     {
-        //
+        $factory = new Factory;
+        $factory->factory_name = $request->factory_name;
+        $factory->location = $request->location;
+        $factory->email = $request->email;
+        $factory->website = $request->website;
+        $factory->save();
     }
 
     /**
