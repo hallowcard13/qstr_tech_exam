@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Factory as FactoryModel;
 
 class FactorySeeder extends Seeder
 {
@@ -12,6 +13,6 @@ class FactorySeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        FactoryModel::factory()->count(10)->hasEmployees(5)->create();
     }
 }
