@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FactoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/userlogout', [LoginController::class, 'logout'])->name('userlogout');
+    Route::resources(
+        [
+            'factories' => FactoryController::class,
+        ]
+    );
 });
