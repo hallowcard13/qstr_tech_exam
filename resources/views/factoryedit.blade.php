@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Add Factory</title>
+    <title>Edit Factory</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -115,7 +115,7 @@
             </nav>
             <header class="py-10">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h1 class="text-3xl font-bold tracking-tight text-white">edit Factory</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-white">Edit Factory</h1>
                 </div>
             </header>
         </div>
