@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Login</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -39,6 +39,11 @@
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
+                @if ($errors->any())
+                <p class="text-red-500">
+                    Please check your email address or password
+                </p>
+                @endif
 
                 <div>
                     <button type="submit"
@@ -46,8 +51,6 @@
                         in</button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </body>
