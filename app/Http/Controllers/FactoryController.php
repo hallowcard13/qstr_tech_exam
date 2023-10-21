@@ -70,6 +70,6 @@ class FactoryController extends Controller
      */
     public function destroy(Factory $factory)
     {
-        //
+        $factory->delete();
     }
 }
