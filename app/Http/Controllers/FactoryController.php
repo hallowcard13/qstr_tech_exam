@@ -58,7 +58,11 @@ class FactoryController extends Controller
      */
     public function update(UpdateFactoryRequest $request, Factory $factory)
     {
-        //
+        $factory->factory_name = $request->factory_name;
+        $factory->location = $request->location;
+        $factory->email = $request->email;
+        $factory->website = $request->website;
+        $factory->save();
     }
 
     /**

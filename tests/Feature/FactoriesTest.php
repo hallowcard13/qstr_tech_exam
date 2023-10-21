@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Factory as FactoryModel;
 
 class FactoriesTest extends TestCase
 {
@@ -33,11 +34,16 @@ class FactoriesTest extends TestCase
     public function test_authenticated_user_can_update_factory(): void
     {
         $user = User::factory()->create();
-        $response = $this->actingAs($user)->post('/factories', [
+        $factory = FactoryModel::factory()->create();
+        $response = $this->actingAs($user)->put('/factories/' . $factory->id, [
             'factory_name' => 'required',
             'location' => 'required'
         ]);
-        $response->assertStatus(200);
+
+        $response->dump();
         $this->assertDatabaseCount('factories', 1);
+        $this->assertDatabaseHas('factories', [
+            'factory_name' => 'required',
+        ]);
     }
 }
