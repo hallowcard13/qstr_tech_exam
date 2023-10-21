@@ -29,7 +29,14 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        //
+        $employee = new Employee;
+        $employee->first_name = $request->first_name;
+        $employee->last_name = $request->last_name;
+        $employee->factory_id = $request->factory_id;
+        $employee->phone = $request->phone;
+        $employee->email = $request->email;
+        $employee->save();
+        return redirect()->route('employees.create')->with('status', 'Employee has been added');
     }
 
     /**
@@ -53,7 +60,13 @@ class EmployeeController extends Controller
      */
     public function update(UpdateEmployeeRequest $request, Employee $employee)
     {
-        //
+        $employee->first_name = $request->first_name;
+        $employee->last_name = $request->last_name;
+        $employee->factory_id = $request->factory_id;
+        $employee->phone = $request->phone;
+        $employee->email = $request->email;
+        $employee->save();
+        return redirect()->route('employees.edit', ['employee' => $employee->id])->with('status', 'Employee has been updated');
     }
 
     /**
