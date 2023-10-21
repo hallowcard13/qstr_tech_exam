@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard</title>
+    <title>Add Factory</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -26,10 +26,10 @@
                                 <div class="flex space-x-4">
                                     <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" -->
                                     <a href="#"
-                                        class="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium"
-                                        aria-current="page">Dashboard</a>
+                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
+                                        aria-current="page">Factories</a>
                                     <a href="/factories"
-                                        class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Factory</a>
+                                        class="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium">Factory</a>
                                     <a href="/employees"
                                         class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium">Employees</a>
                                     <a href="{{route('userlogout')}}"
@@ -115,7 +115,7 @@
             </nav>
             <header class="py-10">
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h1 class="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+                    <h1 class="text-3xl font-bold tracking-tight text-white">Add Factory</h1>
                 </div>
             </header>
         </div>
@@ -123,9 +123,69 @@
         <main class="-mt-32">
             <div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
                 <div class="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-                    <!-- Your content -->
+                    <div class="flex">
+                        <form class="w-1/2" action="{{route('factories.store')}}" method="POST">
+                            @csrf
+                            <div>
+                                <label for="factory_name"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Factory
+                                    Name</label>
+                                <div class="mt-2">
+                                    <input type="text" name="factory_name" id="factory_name"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="factory name">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="location"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Location</label>
+                                <div class="mt-2">
+                                    <input type="text" name="location" id="location"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="location">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="email"
+                                    class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                                <div class="mt-2">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="email address">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="website" class="block text-sm font-medium leading-6 text-gray-900">Website
+                                </label>
+                                <div class="mt-2">
+                                    <input type="text" name="website" id="website"
+                                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        placeholder="website">
+                                </div>
+                            </div>
+                            <div class="pt-5">
+                                <button type="submit" class="bg-indigo-700 text-white rounded-md shadow py-2 px-2">Save
+                                    factory</button>
+                            </div>
+                        </form>
+                        <div class="p-10">
+                            @if ($errors->any())
+                            <div class="bg-red-500 p-4 rounded">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li class="text-white">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                            @if (session('status'))
+                            <div class="bg-green-500 text-white rounded p-4">
+                                {{ session('status') }}
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-            </div>
         </main>
     </div>
 </body>
